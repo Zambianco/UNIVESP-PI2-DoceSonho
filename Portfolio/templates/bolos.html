@@ -1,0 +1,49 @@
+
+{% load static %}
+<html>
+    <head>
+        <title>Bolos</title> 
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static '/css/bolos.css'  %}">
+    </head>
+    <body>
+	<div class="page-header">
+		<h1>BOLOS</h1>
+	</div>
+    <div>
+        {% for bolo in bolos %}
+            <h2>{{ bolo.titulo }}</h2>
+            <hr>
+            <p>{{ bolo.descricao }}</p>
+            <p>{{ bolo.ingredientes }}</p>
+            <hr>
+            <img src={% get_media_prefix %}{{ bolo.foto }} alt="Minha Figura">
+            
+        {% endfor %}   
+	</div>
+    </body>
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+function changebackground(){
+document.getElementById('Flashcard object (2)').style.backgroundColor = 'green' }
+
+</script>
+</html>
+
