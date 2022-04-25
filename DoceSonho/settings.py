@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Portfolio',
     'Classificacao',
-    'frontend.apps.FrontendConfig'
+    'frontend.apps.FrontendConfig',
+    'crispy_forms', 
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,7 @@ MEDIA_URL = os.path.join(BASE_DIR , 'frontend/static/upload/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK="bootstrap4"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
