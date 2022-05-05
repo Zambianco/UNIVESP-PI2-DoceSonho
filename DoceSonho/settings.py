@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
-
+CART_SESSION_ID = 'cart'
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Portfolio',
     'Classificacao',
     'frontend.apps.FrontendConfig',
-    'crispy_forms', 
+    'crispy_forms',
+    'Cart',
 ]
 
 MIDDLEWARE = [

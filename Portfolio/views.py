@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from Classificacao.models import Categoria
-from .models import Bolo, Doce, Quitute
+from .models import Produtos
 from django.http import JsonResponse
 
 def listQuitute(request):
@@ -14,19 +14,10 @@ def listQuitute(request):
         data = list(Quitute.objects.values())
     return JsonResponse(data, safe=False)
 
-def listBolo(request):
-    data = list(Bolo.objects.values())
-    return JsonResponse(data, safe=False)
-
-def listDoce(request):
-    data = list(Doce.objects.values())
+def listProdutos(request):
+    data = list(Produtos.objects.values())
     return JsonResponse(data, safe=False)
 
 def listCategoria(request):
     data = list(Categoria.objects.values())
     return JsonResponse(data, safe=False)
-
-def bolo_show(request):
-    bolos = Bolo.objects.all()
-    context = {'bolos': bolos}
-    return render(request, 'bolos.html', context)
