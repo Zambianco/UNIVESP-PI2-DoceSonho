@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
-
+CART_SESSION_ID = 'cart'
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Portfolio',
     'Classificacao',
-    'frontend.apps.FrontendConfig'
+    'frontend.apps.FrontendConfig',
+    'crispy_forms',
+    'Cart',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,7 @@ MEDIA_URL = os.path.join(BASE_DIR , 'frontend/static/upload/')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK="bootstrap4"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

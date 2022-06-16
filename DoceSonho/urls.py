@@ -20,17 +20,30 @@ from . import views
 from Portfolio import views as Portfolio
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('views/', views.index, name='index'), ##use react for index
     re_path('views/'r'^$', views.index, name='index'),
-    path('admin/', admin.site.urls),
-    path('listBolo/', Portfolio.listBolo),
-    path('listDoce/', Portfolio.listDoce),
-    path('bolos/', Portfolio.bolo_show),
-    path('listQuitute/', Portfolio.listQuitute),
+    path('admin/', admin.site.urls), #Painel administrativo do site
+    path('listProdutos/', Portfolio.listProdutos),
     path('listCategoria/', Portfolio.listCategoria),
     path('',include('frontend.urls')),
+
+    #===== Registro, login e logout de usuários =====
+    path("register/", views.register_request, name="register"), #Pagina de registro dos usuários do site
+    path("login", views.login_request, name="login"), #Página de login dos usuários do site
+    path("logout", views.logout_request, name= "logout"), #Página de logout dos usuários do site
+
+    #===== Recuperação de senha de usuários =====
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password/password_reset_complete.html'), name='password_reset_complete'),
+    path("password_reset", views.password_reset_request, name="password_reset"),
+
+    
+    path('listCart/',include('Cart.urls',namespace='cart')), #lista os itens no carrinho
+    
     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
