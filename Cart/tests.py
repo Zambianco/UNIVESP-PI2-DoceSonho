@@ -79,6 +79,6 @@ class CartViewTest(TestCase):
 
     def test_remove_non_cart_produto(self):
         response = self.client.post(reverse('cart:cart_remove', kwargs={'IDproduto':2,}),follow=True)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
         
 

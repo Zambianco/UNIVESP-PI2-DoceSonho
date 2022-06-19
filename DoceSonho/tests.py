@@ -59,8 +59,7 @@ class UserViewsTest(TestCase):
 
     def test_create_user_invalid_email(self):
         response = self.client.post('/register/', data = {'username':self.username,'email':'teste.teste','password1':self.password,'password2':self.password})
-        print(get_messages(response))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
 
     def test_login_invalid_user(self):
         login = self.client.login(username='invalido', password=self.password)

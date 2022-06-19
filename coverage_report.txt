@@ -23,7 +23,7 @@ DoceSonho/apps.py                                                               
 DoceSonho/asgi.py                                                                  4      4     0%
 DoceSonho/forms.py                                                                14      0   100%
 DoceSonho/settings.py                                                             28      0   100%
-DoceSonho/tests.py                                                                55      0   100%
+DoceSonho/tests.py                                                                54      0   100%
 DoceSonho/urls.py                                                                 10      0   100%
 DoceSonho/views.py                                                                66     21    68%
 DoceSonho/wsgi.py                                                                  4      4     0%
@@ -55,4 +55,4 @@ frontend/urls.py                                                                
 frontend/views.py                                                                  3      1    67%
 manage.py                                                                         12      2    83%
 --------------------------------------------------------------------------------------------------
-TOTAL                                                                            481     53    89%
+TOTAL                                                                            480     53    89%
