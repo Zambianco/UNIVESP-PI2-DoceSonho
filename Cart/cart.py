@@ -1,5 +1,6 @@
 from django.conf import settings
 from Portfolio.models import Produtos
+
 class Cart(object):
     def __init__(self, request):
         """Inicialização do carrinho"""

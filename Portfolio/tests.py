@@ -29,7 +29,6 @@ class ProdutosModelTest(TestCase):
 class ProdutosViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Create 13 authors for pagination tests
 
         Categoria.objects.create(nomeCategoria='bolos')
         Categoria.objects.create(nomeCategoria='doces')

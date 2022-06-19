@@ -3,6 +3,7 @@ from django.urls import reverse
 import json
 import uuid
 
+from django.contrib.messages import get_messages
 from DoceSonho.forms import NewUserForm
 
 # Create your tests here.
@@ -15,7 +16,6 @@ class NewUserFormTest(TestCase):
 
     def test_valid_email_dot_com_dot_br(self):
         form = NewUserForm(data={'username':'teste','email':'teste@teste.com.br','password1':'1X<ISRUkw+tuK','password2':'1X<ISRUkw+tuK'})
-        print(form.errors,form.non_field_errors)
         self.assertTrue(form.is_valid())
 
     def test_invalid_email_without_dot_com(self):
@@ -44,20 +44,22 @@ class UserViewsTest(TestCase):
         form.save()
 
     def test_create_user(self):
-        response = self.client.post('/register/', data = {'username':self.username,'email':'teste@teste.com','password1':self.password,'password2':self.password})
+        response = self.client.post('/register/', data = {'username':self.username,'email':'teste@teste.com','password1':self.password,'password2':self.password},follow=True)
         self.assertEqual(response.status_code, 200)
+        # self.assertRedirects(response, '/')
 
     def test_login(self):
         login = self.client.login(username=self.username, password=self.password)
         self.assertTrue(login)
 
     def test_password_reset(self):
-        response = self.client.post('/password_reset', data = {'email':self.email})
-        self.assertEqual(response.status_code, 302)
+        response = self.client.post('/password_reset', data = {'email':self.email},follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, '/password_reset/done/')
 
     def test_create_user_invalid_email(self):
         response = self.client.post('/register/', data = {'username':self.username,'email':'teste.teste','password1':self.password,'password2':self.password})
-        print(response, response.context['register_form'].errors, response.context['register_form'].non_field_errors)
+        print(get_messages(response))
         self.assertEqual(response.status_code, 200)
 
     def test_login_invalid_user(self):
